@@ -13,6 +13,13 @@ set hlsearch
 set number
 set hidden
 
+set expandtab
+set tabstop=2
+set softtabstop=2
+set autoindent
+set smartindent
+set shiftwidth=2
+
 "***** autocmd *****
 autocmd QuickFixCmdPost *grep* cwindow
 
@@ -32,3 +39,4 @@ call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/neosnippet')
 
 call dein#end()
+
