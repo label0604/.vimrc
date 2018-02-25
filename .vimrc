@@ -3,15 +3,24 @@ vnoremap <C-j> <ESC>
 inoremap <C-j> <ESC>
 nnoremap tt :tabnew<CR>
 nnoremap <ESC><ESC> :noh<CR>
-
+nnoremap <C-cr> o<ESC>
+nnoremap <C-]> g<C-]> 
 
 "***** settings *****
-colorscheme apprentice
+colorscheme hybrid
+set background=dark
+syntax enable
 set clipboard+=unnamed
 set backspace=indent,eol,start
 set hlsearch
 set number
+set cursorline
+hi clear CursorLine
+hi LineNr ctermfg=101
+hi CursorLineNr ctermfg=255
 set hidden
+set incsearch
+set ignorecase
 
 set expandtab
 set tabstop=2
@@ -19,6 +28,8 @@ set softtabstop=2
 set autoindent
 set smartindent
 set shiftwidth=2
+set autochdir
+set imdisable
 
 set showmatch
 source $VIMRUNTIME/macros/matchit.vim
@@ -28,7 +39,12 @@ set history=100
 
 "***** autocmd *****
 autocmd QuickFixCmdPost *grep* cwindow
+nnoremap [q :cprevious<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [Q :<C-u>cfirst<CR>
+nnoremap [Q :<C-u>clast<CR>
 
+autocmd FileType html setl filetype=htmldjango
 
 "****** plugin *****
 let s:dein_dir = expand('~/.vim/dein')
@@ -50,16 +66,23 @@ call dein#add('Shougo/neocomplete.vim')
 call dein#add('Shougo/neosnippet')
 call dein#add('Yggdroot/indentLine')
 call dein#add('szw/vim-tags')
-call dein#add('tpope/vim-surround') "cs"'で囲み記号を変更
-call dein#add('tomtom/tcomment_vim') "Ctrl- * 2で選択行をコメントアウト
+call dein#add('tpope/vim-surround') 
+call dein#add('tomtom/tcomment_vim') 
 
 "ruby_rails
 call dein#add('vim-ruby/vim-ruby')
 call dein#add('tpope/vim-rails')
 call dein#add('tpope/vim-endwise')
 
+"python
+call dein#add('jmcantrell/vim-virtualenv')
+call dein#add('davidhalter/jedi-vim')
+call dein#add('scrooloose/syntastic')
+let g:syntastic_python_checkers = ['pyflakes']
+
 if dein#check_install()
   call dein#install()
 endif
 
 call dein#end()
+
